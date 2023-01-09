@@ -1,0 +1,28 @@
+<div class="container">
+	<h2 style="text-align:center">Login Here </h2><br>
+  <div class="card">
+		<% if flash[:msg] %>
+			<div class="message"><p><%= flash[:msg] %></p></div>
+  	<% end %>
+		<div class="card-body">
+			<div>
+				<%= form_with url: "login", method: :post, model: @user do |form| %>
+	    	<div class="mb-3">
+  	    	<%= form.label :email, { class: "form-label"}  %><br>
+    	  	<%= form.email_field :email, { class: "form-control", placeholder: "Enter Your Email" }  %><br>
+	    	</div>
+	    	<div class="mb-3">	
+  	    	<%= form.label :password, { class: "form-label"}  %><br>
+    	  	<%= form.password_field :password, { class: "form-control", placeholder: "Enter Your Password" }  %><br>
+	    	</div>
+	    	<div class="mb-3" style="margin-left:47%"><br>
+  	    	<%= form.submit "Login", { class: "btn btn-primary" }  %>
+    		</div>
+  		<% end %>
+				<div  style="text-align:center;">
+					<a href="/users/new">Create account</a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>

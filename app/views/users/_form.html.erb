@@ -1,0 +1,41 @@
+<%= form_with model: user do |form| %>
+<div class="card">
+ <div class="card-body">
+  <div class="mb-3">
+    <%= form.label :name, { class: "form-label"}  %><br>
+    <%= form.text_field :name, { class: "form-control", placeholder: "Enter Your Name" } %><br>
+    <% user.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :email, { class: "form-label"}  %><br>
+    <%= form.email_field :email, { class: "form-control", placeholder: "Enter Your Email" } %><br>
+    <% user.errors.full_messages_for(:email).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :role, { class: "form-label"}  %><br>
+    <%= form.select :role, ["customer", "admin"], { class: "form-control" }  %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password, { class: "form-label"}  %><br>
+    <%= form.password_field :password, { class: "form-control", placeholder: "Enter Your Password" }  %><br>
+    <% user.errors.full_messages_for(:password).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3"><br>
+    <%= form.submit "Register", { class: "btn btn-primary" }  %>
+  </div>
+<% end %>
+  <div>
+      <a href="/users/show">Already have account</a>
+  </div>
+</div>
+</div>
+
+
+  
