@@ -1,0 +1,25 @@
+<div class="container" style="height:870px; border:1px solid #800000; color:#800080;">
+	<div class="row">
+    	<div class="col-11">
+				<h1 style="text-align:center">This is about Product </h1>
+			</div>
+			<div class="col-1" style="text-align:left;">
+				<h3><%= link_to 'Logout', '/logout', :data => { :confirm => 'Are you sure?' }%></h3>
+			</div>
+			<hr>
+	</div>
+	<div class="row">
+			<div class="col-4"></div>
+			<div class="col-4" style="margin-top:2.5%;">
+				<h2><%= @product.pname %></h2>
+				<h4><%= @product.pdetail %> </h4>
+				<h5><%= @product.price %>/-</h5>
+				<% if @user_detail.role == "customer" %>
+					<b><%= link_to "Buy",[:user, @product] %><b>
+				<% else %>
+					<%= link_to "Back", root_path %>				
+				<% end %>
+			</div>
+			<div class="col-4"></div>
+	</div>
+</div>

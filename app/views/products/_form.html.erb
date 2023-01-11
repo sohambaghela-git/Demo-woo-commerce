@@ -1,0 +1,32 @@
+<%= form_with model: @products, method: :post do |form| %>
+<div class="card">
+ <div class="card-body">
+  <div class="mb-3">
+    <%= form.label :pname, { class: "form-label"}  %><br>
+    <%= form.text_field :pname, { class: "form-control", placeholder: "Enter Product Name" } %><br>
+    <% product.errors.full_messages_for(:pname).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :pdetail, { class: "form-label"}  %><br>
+    <%= form.text_field :pdetail, { class: "form-control", placeholder: "Enter Product Detail " } %><br>
+    <% product.errors.full_messages_for(:pdetail).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :price, { class: "form-label"}  %><br>
+     <%= form.text_field :price, { class: "form-control", placeholder: "Enter Product Price" }  %><br>
+    <% product.errors.full_messages_for(:price).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div> 
+  <div class="mb-3"><br>
+    <%= form.submit "Add Product", { class: "btn btn-primary" }  %>
+  </div>
+<% end %>
+
+</div>
+</div>

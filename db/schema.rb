@@ -10,26 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_09_141551) do
-  create_table "posts", force: :cascade do |t|
-    t.string "product_name"
-    t.string "detail"
-    t.string "image"
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_105058) do
+  create_table "products", force: :cascade do |t|
+    t.string "pname"
+    t.string "pdetail"
     t.integer "price"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "role"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "posts", "users"
+  add_foreign_key "products", "users"
 end

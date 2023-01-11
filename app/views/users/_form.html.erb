@@ -25,17 +25,20 @@
     <% user.errors.full_messages_for(:password).each do |message| %>
       <div><%= message %></div>
     <% end %>
+  </div> 
+  <div class="mb-3">
+    <%= form.label :password_confirmation, { class: "form-label"}  %><br>
+    <%= form.password_field :password_confirmation, { class: "form-control", placeholder: "Confirm Your Password" }  %><br>
+    <% user.errors.full_messages_for(:password_confirmation).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
-
   <div class="mb-3"><br>
     <%= form.submit "Register", { class: "btn btn-primary" }  %>
   </div>
 <% end %>
   <div>
-      <a href="/users/show">Already have account</a>
+      <a href="/login">Already have account</a>
   </div>
 </div>
 </div>
-
-
-  

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-   root "welcome#welcome"
-
-   post "/users/show", to: "users#show"
-   post "/users/login", to: "users#login"
-   resources :users do
-      resources :posts
-   end
+  root "welcome#welcome"
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  resources :users do
+    resources :products
+  end
 end
