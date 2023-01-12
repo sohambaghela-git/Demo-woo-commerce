@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :login_condition, only: :login
+  # before_action :check_user_authentication
   # before_action :getting_id, only: :show
   def index 
   end
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:name, :email, :role, :password, :password_confirmation)
 	end
-
   def getting_id
     @user = User.find(params[:id])
   end
