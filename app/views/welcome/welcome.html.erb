@@ -7,15 +7,17 @@
 <% if current_user %>
 		<div class="row">
     	<div class="col-1"></div>
-			<div class="col-8">
 			<% if current_user.role == "admin" %>
-				<h4>	
+				<h4 class="col-4">	
 				<%=  link_to "new", new_user_product_path(current_user.id) %>
+				</h4>
+				<h4 class="col-4">	
+					<%=  link_to "My Products", user_products_path(current_user.id) %>
 				</h4>
 			<% else %>
 
 			<% end %>
-			</div>
+
 			<div class="col-3">
 				<h3><%= link_to 'Logout', '/logout', :data => { :confirm => 'Are you sure?' }%></h3>
 			</div>

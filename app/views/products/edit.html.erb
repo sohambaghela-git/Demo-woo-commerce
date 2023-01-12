@@ -1,0 +1,50 @@
+<div class="container">
+	<div>
+		<h2>update your product</h2>
+	</div>
+		<%= form_with model: [:user,@product] do |form| %>
+	<div class="card">
+    <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+    <% end %>
+ 		<div class="card-body">
+      <div class="mb-3">
+        <%= form.label :pname, { class: "form-label"}  %><br>
+        <%= form.text_field :pname, { class: "form-control", placeholder: "Enter Product Name" } %><br>
+        <%
+=begin%>
+ <% product.errors.full_messages_for(:pname).each do |message| %>
+          <div><%= message %></div>
+        <% end %> 
+<%
+=end%>
+      </div>
+      <div class="mb-3">
+        <%= form.label :pdetail, { class: "form-label"}  %><br>
+        <%= form.text_field :pdetail, { class: "form-control", placeholder: "Enter Product Detail " } %><br>
+        <%
+=begin%>
+ <% product.errors.full_messages_for(:pdetail).each do |message| %>
+          <div><%= message %></div>
+        <% end %> 
+<%
+=end%>
+      </div>
+      <div class="mb-3">
+        <%= form.label :price, { class: "form-label"}  %><br>
+        <%= form.number_field :price, { class: "form-control", placeholder: "Enter Product Price" }  %><br>
+        <%
+=begin%>
+ <% product.errors.full_messages_for(:price).each do |message| %>
+          <div><%= message %></div>
+        <% end %> 
+<%
+=end%>
+      </div> 
+      <div class="mb-3"><br>
+        <%= form.submit " Update ", { class: "btn btn-primary" }  %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
