@@ -8,8 +8,8 @@
 			<h5>Price:- </h5>
 		</div><div class="col-1"></div>
 		<div class="col-3" >
-			<h2><%= @product.pname %></h2>
-			<h4><%= @product.pdetail %> </h4>
+			<h2><%= @product.name %></h2>
+			<h4><%= @product.detail %> </h4>
 			<h5><%= @product.price %>/-</h5>
 		</div>
 		<div class="col-4"></div>
@@ -33,6 +33,7 @@
       </div>
       <div class="mb-3"><br>
         <%= form.submit "Proceed", { class: "btn btn-primary" }  %>
+				<%= link_to "Cancel", root_path, { class: "btn btn-info" } %>
       </div>
     <% end %>
     </div>

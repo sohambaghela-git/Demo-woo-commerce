@@ -13,18 +13,17 @@
 	</div>
 	<% if current_user.role == "customer" %>
 		<div class="row">
-			<div class="col-4"></div>
-			<div class="col-4">
-				<%= link_to "My Orders", user_product_orders_path(product_id:@product.id) %>
+			<div class="col-11"></div>
+			<div class="col-1">
+				<b><%= link_to "My Orders", user_product_orders_path(product_id:@product.id) %></b>
 			</div>
-			<div class="col-4"></div>
 		</div>
 	<% end %>
 	<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4" style="margin-top:2.5%;">
-				<h2><%= @product.pname %></h2>
-				<h4><%= @product.pdetail %> </h4>
+				<h2><%= @product.name %></h2>
+				<h4><%= @product.detail %> </h4>
 				<h5><%= @product.price %>/-</h5>
 				<% if @user_detail.role == "customer" %>
 					<b><%= link_to "Buy", new_user_product_order_path(product_id: @product.id) %><b>

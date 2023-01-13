@@ -35,8 +35,8 @@
 		<div class="row">
 			<% @products.each do |product| %>
 				<div class="col-3" style="margin-left:7%; margin-bottom:2.5%; margin-top:2.5%;">
-					<h4><%= link_to product.pname, user_product_path(user_id:current_user.id,id: product.id) %></h4>
-					<p><%= product.pdetail %> </p>
+					<h4><%= link_to product.name, user_product_path(user_id:current_user.id,id: product.id) %></h4>
+					<p><%= product.detail %> </p>
 					<b><%= product.price %>/-</b>
 				</div>
 			<% end %>
@@ -51,8 +51,8 @@
 		<div class="row">
 		<% @products.each do |product| %>
 			<div class="col-3" style="margin-left:7%; margin-bottom:2.5%; margin-top:2.5%;">
-				<h4><%= product.pname %></h4>
-				<p><%= product.pdetail %> </p>
+				<h4><%= product.name %></h4>
+				<p><%= product.detail %> </p>
 				<b><%= product.price %>/-</b>
 			</div>
 		<% end %>

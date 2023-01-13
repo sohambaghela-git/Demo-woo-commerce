@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # To checking condition for Admin to Create and update Products
   before_action :check_admin, only: [:new, :create]
   before_action :check_admin_for_update, only: [:edit, :update]
-  
+
   def index
     @products = []
     @products << Product.where(user_id: params[:user_id])
@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @user_id = params[:user_id]
     @product.user_id = @user_id
+    byebug
     if @product.save
       flash[:notice] = "Your Product is Saved Successfully"
       redirect_to user_product_path(user_id: @user_id, id: @product.id)
@@ -57,7 +58,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit!
+    params.require(:product).permit(:name, :detail, :price, :product_image, :user_id)
   end
   def match_users
     (current_user.id).to_s.eql?(params[:user_id])
@@ -81,7 +82,7 @@ class ProductsController < ApplicationController
     current_user.id.eql?(@user_id)
   end
   def check_admin_for_update
-  if match_admins
+    if match_admins
       flash[:notice] = "Yeah you can Update"
     else
       flash[:notice] = "Sorry you can not update this Product "
