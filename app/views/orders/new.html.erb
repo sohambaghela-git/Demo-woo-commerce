@@ -1,0 +1,40 @@
+<div class="container">
+	<h1 style="text-align:center"> Buy Your Product</h1><br>
+	<div class="row">
+		<div class="col-3"></div>
+		<div class="col-1" >
+			<h2>Product:-</h2>
+			<h4>Detail:- </h4>
+			<h5>Price:- </h5>
+		</div><div class="col-1"></div>
+		<div class="col-3" >
+			<h2><%= @product.pname %></h2>
+			<h4><%= @product.pdetail %> </h4>
+			<h5><%= @product.price %>/-</h5>
+		</div>
+		<div class="col-4"></div>
+	</div>
+	<%= form_with model: [:user, :product, @order] do |form| %>
+	<div class="card">
+    <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+    <% end %>
+ 		<div class="card-body">
+      <div class="mb-3">
+        <%= form.label :shipping_address, { class: "form-label"}  %><br>
+        <%= form.text_field :shipping_address, { class: "form-control", placeholder: "Enter Shipping Address" } %><br>
+      </div>
+			<div>
+				<%= form.hidden_field :transaction_id, value: SecureRandom.hex(10) %>
+			</div>
+      <div class="mb-3">
+        <%= form.label :Total, { class: "form-label"}  %><br>
+        <%= form.select :amount,[ @product.price ]%><br>
+      </div>
+      <div class="mb-3"><br>
+        <%= form.submit "Proceed", { class: "btn btn-primary" }  %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

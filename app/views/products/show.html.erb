@@ -1,6 +1,9 @@
-<div class="container" style="height:870px; border:1px solid #800000; color:#800080;">
+<div class="container" style="auto;">
 	<div class="row">
-    	<div class="col-11">
+		<div class="col-1">
+			<h3><%= link_to "Back", root_path %></h3>
+		</div>
+    	<div class="col-10">
 				<h1 style="text-align:center">This is about Product </h1>
 			</div>
 			<div class="col-1" style="text-align:left;">
@@ -8,6 +11,15 @@
 			</div>
 			<hr>
 	</div>
+	<% if current_user.role == "customer" %>
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<%= link_to "My Orders", user_product_orders_path(product_id:@product.id) %>
+			</div>
+			<div class="col-4"></div>
+		</div>
+	<% end %>
 	<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4" style="margin-top:2.5%;">
@@ -15,7 +27,7 @@
 				<h4><%= @product.pdetail %> </h4>
 				<h5><%= @product.price %>/-</h5>
 				<% if @user_detail.role == "customer" %>
-					<b><%= link_to "Buy",[:user, @product] %><b>
+					<b><%= link_to "Buy", new_user_product_order_path(product_id: @product.id) %><b>
 				<% else %>
 					<%= link_to "Back", root_path %>				
 				<% end %>

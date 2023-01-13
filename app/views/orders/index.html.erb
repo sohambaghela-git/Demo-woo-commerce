@@ -1,0 +1,38 @@
+<div class="container" style="height:870px; border:1px solid #800000; color:#800080;">
+	<div>
+    <h1 style="text-align:center">Welcome to Woo-commerce </h1>
+		<h2 style="text-align:center">This is Account History </h2>
+		<div class=row>
+			<div class="col-11"></div>
+			<div class="col-1">
+				<h4>	
+				<%=  link_to "Home", root_path %>
+				</h4>
+			</div>
+		</div>
+		<hr>
+	</div>
+	<% if @orders.length == 1 %>
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col-4" style="margin-left:7%; margin-bottom:2.5%; margin-top:2.5%;">
+				<h2><%= @orders[0].shipping_address %></h2>
+				<h5><%= @orders[0].transaction_id %> </h5>
+				<h5><%= @orders[0].amount %>/-</h5>
+				<h6><%= @orders[0].created_at %></h6>
+			</div>
+			<div class="col-4"></div>
+		</div>
+	<% elsif (@orders.length > 1) %>
+		<div class="row">
+			<% @orders.each do | order| %>
+				<div class="col-3" style="margin-left:7%; margin-bottom:2.5%; margin-top:2.5%;">
+					<p>Address:- <%= order.shipping_address %></p>
+					<p>Transaction_id:- <%= order.transaction_id %> </p>
+					<p>Amount <%= order.amount %>/-</p>
+					<h6>Date:- <%= order.created_at %></h6>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>

@@ -1,8 +1,11 @@
 # Product Class for Customer and Admin
 class ProductsController < ApplicationController
-  # before_action :check_user_authentication
+	# To check User is Logged_in or Not
+  before_action :check_user_authentication
+  # To checking condition for Admin to Create and update Products
   before_action :check_admin, only: [:new, :create]
   before_action :check_admin_for_update, only: [:edit, :update]
+  
   def index
     @products = []
     @products << Product.where(user_id: params[:user_id])
@@ -61,8 +64,10 @@ class ProductsController < ApplicationController
   end
   def check_admin
     if match_users
-      if current_user.role == "admin"
+      if (current_user.role).eql?("admin")
+        flash[:notice] = "Yeah you can Update"
       else
+        flash[:notice] = "Oops! Its only for Admin Use"
         redirect_to root_path
       end
     else
@@ -76,11 +81,11 @@ class ProductsController < ApplicationController
     current_user.id.eql?(@user_id)
   end
   def check_admin_for_update
-      if match_admins
-        flash[:notice] = "Yeah you can Update"
-      else
-        flash[:notice] = "Sorry you can not update this Product "
-        redirect_to user_products_path
-      end
+  if match_admins
+      flash[:notice] = "Yeah you can Update"
+    else
+      flash[:notice] = "Sorry you can not update this Product "
+      redirect_to user_products_path
+    end
   end
 end

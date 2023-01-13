@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :user_already_exist, only: [:new]
   def new
   end
   def create
@@ -18,5 +19,14 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:notice] = "Logged Out"
     redirect_to '/login'
+  end
+  private 
+  def user_already_exist
+    if current_user.present?
+      flash[:notice] = " Oops You Are already, Please logout first  " 
+      redirect_to root_path
+    else
+
+    end
   end
 end

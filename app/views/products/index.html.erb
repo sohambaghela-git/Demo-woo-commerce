@@ -1,18 +1,22 @@
-<div class="container" style="height:870px; border:1px solid #800000; color:#800080;">
+<div class="container" style="height:870px;">
 	<div>
-    <h1 style="text-align:center">Welcome <%= @user_detail.name %> to Woo-commerce </h1>
+    <h1 style="text-align:center">Welcome <%= @user_detail.role %> to Woo-commerce </h1>
 		<h2 style="text-align:center">This is My Product </h2>
 		<div class=row>
-			<div class="col-11"></div>
-			<div class="col-1">
-				<h4>	
+			<div class="col-1"></div>
+			<div class="col-3">
+				<h3>	
 				<%=  link_to "new", new_user_product_path %>
-				</h4>
+				</h3>
+			</div>
+			<div class="col-6"></div>
+			<div class="col-2">
+				<h3><%= link_to 'Logout', '/logout', :data => { :confirm => 'Are you sure?' }%></h3>
 			</div>
 		</div>
 		<hr>
 	</div>
-	<% if @products.length == 1 %>
+	<% if (@products.length).eql?(1) %>
 		<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4" style="margin-left:7%; margin-bottom:2.5%; margin-top:2.5%;">

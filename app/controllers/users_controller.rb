@@ -14,10 +14,11 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      flash[:notice] = "Signup successful"
+      redirect_to '/login'
+      flash[:notice] = "Registered successful"
     else
       flash[:notice] = "Please try again"
-      redirect_to '/signup'
+      redirect_to signup_path
     end
   end
 
