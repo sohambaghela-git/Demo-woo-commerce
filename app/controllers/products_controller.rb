@@ -2,9 +2,10 @@
 class ProductsController < ApplicationController
 	# To check User is Logged_in or Not
   before_action :check_user_authentication
+	# before_action :match_url_and_session_ids
   # To checking condition for Admin to Create and update Products
-  before_action :check_admin, only: [:new, :create]
-  before_action :check_admin_for_update, only: [:edit, :update]
+  before_action :check_seller, only: [:new, :create]
+  before_action :check_seller_for_update, only: [:edit, :update]
 
   def index
     @products = []
@@ -21,14 +22,14 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new 
+    @product = Product.new
   end
 
   def create
     @product = Product.new(product_params)
     @user_id = params[:user_id]
     @product.user_id = @user_id
-    byebug
+    #byebug
     if @product.save
       flash[:notice] = "Your Product is Saved Successfully"
       redirect_to user_product_path(user_id: @user_id, id: @product.id)
@@ -58,14 +59,14 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :detail, :price, :product_image, :user_id)
+    params.require(:product).permit(:name, :detail, :price, :user_id)
   end
   def match_users
     (current_user.id).to_s.eql?(params[:user_id])
   end
-  def check_admin
+  def check_seller
     if match_users
-      if (current_user.role).eql?("admin")
+      if (current_user.role).eql?("seller")
         flash[:notice] = "Yeah you can Update"
       else
         flash[:notice] = "Oops! Its only for Admin Use"
@@ -75,14 +76,14 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
-  def match_admins
+  def match_seller
     @id = (params[:id]).to_i
     @product = Product.find(@id)
     @user_id = @product.user_id
     current_user.id.eql?(@user_id)
   end
-  def check_admin_for_update
-    if match_admins
+  def check_seller_for_update
+    if match_seller
       flash[:notice] = "Yeah you can Update"
     else
       flash[:notice] = "Sorry you can not update this Product "

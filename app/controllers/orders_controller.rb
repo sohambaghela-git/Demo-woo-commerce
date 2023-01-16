@@ -2,6 +2,7 @@
 class OrdersController < ApplicationController
 	# To check User is Logged_in or Not
 	before_action :check_user_authentication
+	# before_action :match_url_and_session_ids
 
 	def index
 		@orders = []

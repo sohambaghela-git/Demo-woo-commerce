@@ -13,4 +13,12 @@ class ApplicationController < ActionController::Base
 			redirect_to login_path
 		end
 	end
+	def match_url_and_session_ids
+		if (current_user.id).eql?(params[:user_id])
+			flash[:notice] = " yeah you can "
+		else
+			flash[:notice] = " Sorry you can not access "
+			redirect_to root_path
+		end
+	end
 end

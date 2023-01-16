@@ -22,13 +22,23 @@
 	<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4" style="margin-top:2.5%;">
+				<%= @product.product_image.each do |file|  %>
+					<% if file.representable? %>
+						<%= image_tag file.representable(resize_to_limit: [100, 100]) %>
+					<% end %>
+				<% end %>	
 				<h2><%= @product.name %></h2>
 				<h4><%= @product.detail %> </h4>
 				<h5><%= @product.price %>/-</h5>
 				<% if @user_detail.role == "customer" %>
 					<b><%= link_to "Buy", new_user_product_order_path(product_id: @product.id) %><b>
 				<% else %>
-					<%= link_to "Back", root_path %>				
+				<p  style="text-align:left">
+					<%= link_to "Back", root_path %>
+				</p>
+				<p style="text-align:left" >
+					<%=  link_to "My Products", user_products_path(current_user.id) %>
+				</p>
 				<% end %>
 			</div>
 			<div class="col-4"></div>
